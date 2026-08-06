@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | MODARA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .checkout-layout{ display:grid; gap:32px; padding:24px 0 80px; }
+  @media (min-width:960px){ .checkout-layout{ grid-template-columns:1fr 380px; align-items:start; } }
+  .checkout-step{ margin-bottom:36px; }
+  .step-num{ display:inline-flex; align-items:center; justify-content:center; width:26px;height:26px; border-radius:50%; background:var(--ink); color:var(--paper); font-size:12px; font-weight:700; margin-right:10px; }
+  .step-title{ display:flex; align-items:center; font-family:var(--font-head); font-size:16px; font-weight:600; margin-bottom:18px; }
+  .form-field{ margin-bottom:16px; }
+  .form-field label{ display:block; font-size:12.5px; font-weight:600; margin-bottom:8px; }
+  .form-field input, .form-field select{ width:100%; border:1px solid var(--ink-12); border-radius:2px; padding:13px 14px; font-size:14px; font-family:inherit; }
+  .form-row2{ display:grid; gap:14px; grid-template-columns:1fr 1fr; }
+  .pay-option{ display:flex; align-items:center; gap:12px; border:1px solid var(--ink-12); border-radius:6px; padding:14px 16px; margin-bottom:10px; cursor:pointer; }
+  .pay-option input{ accent-color:var(--ink); width:16px;height:16px; }
+  .pay-option.selected{ border-color:var(--gold); background:#FBF8EF; }
+  .checkout-summary{ border:1px solid var(--line); border-radius:var(--radius-md); padding:24px; position:sticky; top:96px; }
+  .mini-line{ display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-size:13px; }
+  .mini-line img{ width:48px;height:48px;border-radius:6px;object-fit:cover; }
+  .summary-row{ display:flex; justify-content:space-between; font-size:13.5px; padding:8px 0; color:var(--ink-70); }
+  .summary-row.total{ font-size:16px; font-weight:600; color:var(--ink); border-top:1px solid var(--line); margin-top:6px; padding-top:14px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="nav-logo">MOD<span>A</span>RA</a>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+    <div class="nav-actions">
+      <a href="cart.html" class="icon-btn" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span class="cart-count" data-cart-count>0</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="crumb" style="padding-top:20px;">
+    <a href="cart.html">Cart</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 6l6 6-6 6"/></svg><span>Checkout</span>
+  </div>
+  <h1 style="margin-top:18px;font-size:clamp(24px,3.6vw,32px);">Checkout</h1>
+  <p class="muted" style="margin-top:6px;font-size:13px;">Demo checkout — payment integration (Paystack / Flutterwave) connects here.</p>
+
+  <div class="checkout-layout">
+    <div>
+      <div class="checkout-step">
+        <div class="step-title"><span class="step-num">1</span>Delivery Details</div>
+        <div class="form-row2">
+          <div class="form-field"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+          <div class="form-field"><label>Phone Number</label><input type="tel" placeholder="080..."></div>
+        </div>
+        <div class="form-field"><label>Delivery Address</label><input type="text" placeholder="Street address"></div>
+        <div class="form-row2">
+          <div class="form-field"><label>City</label><input type="text" placeholder="City"></div>
+          <div class="form-field"><label>State</label>
+            <select><option>Lagos</option><option>Anambra</option><option>Abuja (FCT)</option><option>Rivers</option><option>Other</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkout-step">
+        <div class="step-title"><span class="step-num">2</span>Payment Method</div>
+        <label class="pay-option selected"><input type="radio" name="pay" checked> <span>Card Payment (Paystack / Flutterwave)</span></label>
+        <label class="pay-option"><input type="radio" name="pay"> <span>Bank Transfer</span></label>
+        <label class="pay-option"><input type="radio" name="pay"> <span>USSD</span></label>
+      </div>
+    </div>
+
+    <div class="checkout-summary">
+      <h2 style="font-size:16px;margin-bottom:14px;">Order Summary</h2>
+      <div id="checkoutLines"></div>
+      <div class="summary-row"><span>Subtotal</span><span id="cSub">₦0</span></div>
+      <div class="summary-row"><span>Shipping</span><span id="cShip">₦0</span></div>
+      <div class="summary-row total"><span>Total</span><span id="cTotal">₦0</span></div>
+      <button class="btn btn-primary btn-block" id="placeOrderBtn" style="margin-top:18px;">Place Order</button>
+      <p class="muted" style="font-size:11px;margin-top:12px;text-align:center;">This is a UI demo — no real payment is processed.</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+(function(){
+  const lines = Cart.lines();
+  document.getElementById("checkoutLines").innerHTML = lines.map(l=>`
+    <div class="mini-line"><img src="${l.img}" alt=""><div><b style="display:block;">${l.name}</b><span class="muted">Qty ${l.qty} · ${modaraFormatNaira(l.price)}</span></div></div>
+  `).join("") || `<p class="muted" style="font-size:13px;">Your cart is empty.</p>`;
+  const subtotal = Cart.subtotal();
+  const shipping = subtotal >= 100000 || subtotal===0 ? 0 : 3500;
+  document.getElementById("cSub").textContent = modaraFormatNaira(subtotal);
+  document.getElementById("cShip").textContent = shipping===0 ? "Free" : modaraFormatNaira(shipping);
+  document.getElementById("cTotal").textContent = modaraFormatNaira(subtotal+shipping);
+
+  document.querySelectorAll(".pay-option").forEach(opt=>{
+    opt.addEventListener("click", ()=>{
+      document.querySelectorAll(".pay-option").forEach(o=>o.classList.remove("selected"));
+      opt.classList.add("selected");
+      opt.querySelector("input").checked = true;
+    });
+  });
+
+  document.getElementById("placeOrderBtn").addEventListener("click", ()=>{
+    if(!lines.length){ showToast("Your cart is empty"); return; }
+    showToast("This is a UI demo — no order was placed");
+  });
+})();
+</script>
+</body>
+</html>
