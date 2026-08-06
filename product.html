@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Product | MODARA</title>
+<meta name="description" content="Shop premium curated watches at MODARA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .pdp-layout{ display:grid; gap:44px; padding:24px 0 60px; }
+  @media (min-width:900px){ .pdp-layout{ grid-template-columns:1.1fr 1fr; gap:56px; } }
+  .pdp-gallery-main{
+    aspect-ratio:1/1; border-radius:var(--radius-lg); overflow:hidden; background:var(--mist); position:relative;
+  }
+  .pdp-gallery-main img{ width:100%;height:100%;object-fit:cover; cursor:zoom-in; transition:transform .4s var(--ease); }
+  .pdp-gallery-main.zoomed img{ transform:scale(1.8); cursor:zoom-out; }
+  .pdp-thumbs{ display:flex; gap:10px; margin-top:12px; }
+  .pdp-thumb{
+    width:72px; height:72px; border-radius:8px; overflow:hidden; border:2px solid transparent; opacity:.7; transition:all .2s; flex-shrink:0;
+  }
+  .pdp-thumb.active{ border-color:var(--gold); opacity:1; }
+  .pdp-thumb img{ width:100%;height:100%;object-fit:cover; }
+  .pdp-brand{ font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-50); font-weight:600; }
+  .pdp-name{ font-size:clamp(24px,3.4vw,32px); margin-top:8px; }
+  .pdp-rating{ display:flex; align-items:center; gap:8px; margin-top:12px; font-size:13px; color:var(--ink-50); }
+  .pdp-rating .stars{ display:flex; gap:2px; color:var(--gold); }
+  .pdp-rating svg{ width:14px;height:14px; }
+  .pdp-price-row{ display:flex; align-items:baseline; gap:12px; margin-top:18px; }
+  .pdp-price-row b{ font-family:var(--font-head); font-size:30px; font-weight:600; }
+  .pdp-price-row s{ font-size:16px; color:var(--ink-30); }
+  .pdp-price-row .save{ font-size:12px; font-weight:700; color:var(--success); background:#EAF4EE; padding:4px 9px; border-radius:100px; }
+  .pdp-avail{ display:flex; align-items:center; gap:8px; margin-top:14px; font-size:13px; color:var(--success); font-weight:500; }
+  .pdp-avail svg{ width:14px;height:14px; }
+  .pdp-desc{ margin-top:20px; color:var(--ink-70); font-size:14.5px; line-height:1.75; }
+  .pdp-specs{ margin-top:24px; border-top:1px solid var(--line); }
+  .spec-row{ display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
+  .spec-row span:first-child{ color:var(--ink-50); }
+  .spec-row span:last-child{ font-weight:500; text-align:right; }
+  .pdp-qty-row{ display:flex; align-items:center; gap:16px; margin-top:26px; }
+  .qty-select{ display:flex; align-items:center; border:1px solid var(--ink-12); border-radius:2px; }
+  .qty-select button{ width:44px;height:48px; background:none; border:none; font-size:18px; }
+  .qty-select span{ min-width:36px; text-align:center; font-weight:600; font-size:14px; }
+  .pdp-cta-row{ display:flex; gap:12px; margin-top:20px; }
+  .pdp-cta-row .btn{ flex:1; }
+  .pdp-trust-mini{ display:flex; flex-direction:column; gap:10px; margin-top:28px; padding-top:24px; border-top:1px solid var(--line); }
+  .pdp-trust-mini div{ display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink-70); }
+  .pdp-trust-mini svg{ width:17px;height:17px; color:var(--gold-deep); flex-shrink:0; }
+  .tabs-nav{ display:flex; gap:28px; border-bottom:1px solid var(--line); margin-top:64px; overflow-x:auto; }
+  .tab-btn{ padding:14px 2px; font-size:13.5px; font-weight:600; color:var(--ink-50); border-bottom:2px solid transparent; white-space:nowrap; background:none;border:none; border-bottom-width:2px; }
+  .tab-btn.active{ color:var(--ink); border-bottom-color:var(--gold); }
+  .tab-panel{ display:none; padding:28px 0; max-width:72ch; }
+  .tab-panel.active{ display:block; }
+  .review-card{ padding:18px 0; border-bottom:1px solid var(--line); }
+  .review-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+  .review-head b{ font-size:13.5px; }
+  .review-stars{ display:flex; gap:2px; color:var(--gold); }
+  .review-stars svg{ width:12px;height:12px; }
+  .review-text{ font-size:13.5px; color:var(--ink-70); line-height:1.7; }
+  .review-date{ font-size:11.5px; color:var(--ink-30); margin-top:6px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="nav-logo">MOD<span>A</span>RA</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="shop.html#collections">Collections</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <a href="account.html" class="icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <button class="icon-btn menu-btn" data-drawer-open aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-overlay"></div>
+<aside class="drawer">
+  <div class="drawer-head">
+    <span class="nav-logo">MOD<span>A</span>RA</span>
+    <button class="icon-btn" data-drawer-close aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="shop.html#collections">Collections</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="faq.html">FAQ</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</aside>
+
+<div class="wrap" style="padding-top:20px;">
+  <div class="crumb" id="crumbNav">
+    <a href="index.html">Home</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 6l6 6-6 6"/></svg>
+    <a href="shop.html">Shop</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 6l6 6-6 6"/></svg>
+    <span id="crumbName">Product</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="pdp-layout" id="pdpLayout">
+    <!-- Gallery -->
+    <div>
+      <div class="pdp-gallery-main" id="galleryMain">
+        <img id="mainImage" src="" alt="">
+      </div>
+      <div class="pdp-thumbs" id="galleryThumbs"></div>
+    </div>
+
+    <!-- Info -->
+    <div>
+      <div class="pdp-brand" id="pBrand"></div>
+      <h1 class="pdp-name" id="pName"></h1>
+      <div class="pdp-rating">
+        <div class="stars" id="pStars"></div>
+        <span id="pReviewCount"></span>
+      </div>
+      <div class="pdp-price-row">
+        <b id="pPrice"></b>
+        <s id="pCompareAt" style="display:none;"></s>
+        <span class="save" id="pSave" style="display:none;"></span>
+      </div>
+      <div class="pdp-avail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+        <span>In Stock — ready to ship</span>
+      </div>
+      <p class="pdp-desc" id="pDescription"></p>
+
+      <div class="pdp-qty-row">
+        <div class="qty-select">
+          <button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+          <span id="qtyValue">1</span>
+          <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="wishlist-btn" id="pdpWishlist" style="position:static;" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.2 2 4.5 5.6 4C8 3.6 10 5 12 7.3C14 5 16 3.6 18.4 4c3.6.5 5.2 4.2 3.6 7.7C19.5 16.4 12 21 12 21z"/></svg>
+        </button>
+      </div>
+
+      <div class="pdp-cta-row">
+        <button class="btn btn-outline" id="addToCartBtn">Add to Cart</button>
+        <button class="btn btn-primary" id="buyNowBtn">Buy Now</button>
+      </div>
+
+      <div class="pdp-specs" id="pdpSpecs"></div>
+
+      <div class="pdp-trust-mini">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/></svg> Secure checkout, encrypted end to end</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="7" width="15" height="11" rx="1.5"/><path d="M16 10h3.5L22 13v5h-6"/></svg> <span id="pDelivery">Delivery in 2–4 business days</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v4H4zM6 8v11a1 1 0 001 1h10a1 1 0 001-1V8"/></svg> <span id="pWarranty">2-Year MODARA Warranty</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-nav">
+    <button class="tab-btn active" data-tab="description">Description</button>
+    <button class="tab-btn" data-tab="specs">Specifications</button>
+    <button class="tab-btn" data-tab="reviews">Reviews</button>
+  </div>
+  <div class="tab-panel active" data-panel="description" id="tabDescription"></div>
+  <div class="tab-panel" data-panel="specs" id="tabSpecs"></div>
+  <div class="tab-panel" data-panel="reviews">
+    <div id="reviewsList"></div>
+  </div>
+
+  <!-- Related products -->
+  <section class="section section-tight">
+    <div class="section-head">
+      <div class="eyebrow">You May Also Like</div>
+      <h2 class="section-title" style="font-size:24px;">Related Watches</h2>
+    </div>
+    <div class="product-grid" id="relatedGrid"></div>
+  </section>
+
+  <!-- Recently viewed -->
+  <section class="section section-tight" id="recentlyViewedSection" style="display:none;">
+    <div class="section-head">
+      <div class="eyebrow">Your History</div>
+      <h2 class="section-title" style="font-size:24px;">Recently Viewed</h2>
+    </div>
+    <div class="product-grid" id="recentGrid"></div>
+  </section>
+</div>
+
+<!-- Sticky mobile Add to Cart -->
+<div class="sticky-atc" id="stickyAtc">
+  <div class="price">
+    <span id="stickyBrand">Brand</span>
+    <span id="stickyPrice" style="display:block;font-size:16px;color:var(--ink);font-weight:600;"></span>
+  </div>
+  <button class="btn btn-primary" style="flex:1;" id="stickyAddBtn">Add to Cart</button>
+</div>
+
+<footer class="footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <span class="nav-logo">MOD<span>A</span>RA</span>
+      <p>Africa's most trusted destination for premium, curated watches.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3v11.5a3.5 3.5 0 11-3.5-3.5"/><path d="M14 3c0 2.5 2 4.5 4.5 4.5"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3V6h-3a3 3 0 00-3 3v2H8v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 011-1z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <b>Shop</b>
+      <ul><li><a href="shop.html?gender=men">Men</a></li><li><a href="shop.html?gender=women">Women</a></li><li><a href="shop.html?filter=new">New Arrivals</a></li><li><a href="shop.html?filter=bestsellers">Best Sellers</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <b>Support</b>
+      <ul><li><a href="returns.html">Returns &amp; Warranty</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <b>Company</b>
+      <ul><li><a href="about.html">About MODARA</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 MODARA. All rights reserved.</span>
+    <div class="pay-icons"><span>Paystack</span><span>Flutterwave</span><span>Visa</span><span>Mastercard</span></div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id") || MODARA_PRODUCTS[0].id;
+  const p = MODARA_PRODUCTS.find(x => x.id === id) || MODARA_PRODUCTS[0];
+
+  document.getElementById("pageTitle").textContent = `${p.brand} ${p.name} | MODARA`;
+  document.getElementById("crumbName").textContent = p.name;
+  document.getElementById("pBrand").textContent = p.brand;
+  document.getElementById("pName").textContent = p.name;
+  document.getElementById("pStars").innerHTML = starRow(p.rating);
+  document.getElementById("pReviewCount").textContent = `${p.rating} (${p.reviews} reviews)`;
+  document.getElementById("pPrice").textContent = modaraFormatNaira(p.price);
+  document.getElementById("pDescription").textContent = p.description;
+  document.getElementById("pDelivery").textContent = `Delivery in ${p.delivery}`;
+  document.getElementById("pWarranty").textContent = p.warranty;
+  document.getElementById("stickyBrand").textContent = p.brand;
+  document.getElementById("stickyPrice").textContent = modaraFormatNaira(p.price);
+
+  if(p.compareAt){
+    const el = document.getElementById("pCompareAt");
+    el.textContent = modaraFormatNaira(p.compareAt);
+    el.style.display = "inline";
+    const save = document.getElementById("pSave");
+    save.textContent = `Save ${Math.round(100-(p.price/p.compareAt*100))}%`;
+    save.style.display = "inline-block";
+  }
+
+  // Gallery
+  const mainImg = document.getElementById("mainImage");
+  const thumbsWrap = document.getElementById("galleryThumbs");
+  mainImg.src = p.gallery[0]; mainImg.alt = `${p.brand} ${p.name}`;
+  thumbsWrap.innerHTML = p.gallery.map((src,i)=>`<button class="pdp-thumb${i===0?' active':''}" data-src="${src}"><img src="${src}" alt="${p.name} view ${i+1}"></button>`).join("");
+  thumbsWrap.addEventListener("click",(e)=>{
+    const btn = e.target.closest(".pdp-thumb");
+    if(!btn) return;
+    mainImg.src = btn.dataset.src;
+    thumbsWrap.querySelectorAll(".pdp-thumb").forEach(t=>t.classList.remove("active"));
+    btn.classList.add("active");
+  });
+  const galleryMain = document.getElementById("galleryMain");
+  galleryMain.addEventListener("click", ()=> galleryMain.classList.toggle("zoomed"));
+
+  // Specs
+  const specs = [
+    ["Brand", p.brand],
+    ["Movement", p.movement.charAt(0).toUpperCase()+p.movement.slice(1)],
+    ["Case Material", p.caseMaterial],
+    ["Strap Material", p.strapMaterial],
+    ["Water Resistance", p.water],
+    ["Warranty", p.warranty],
+  ];
+  const specsHTML = specs.map(([k,v])=>`<div class="spec-row"><span>${k}</span><span>${v}</span></div>`).join("");
+  document.getElementById("pdpSpecs").innerHTML = specsHTML;
+  document.getElementById("tabSpecs").innerHTML = specsHTML;
+  document.getElementById("tabDescription").innerHTML = `<p style="color:var(--ink-70);font-size:14.5px;line-height:1.8;">${p.description}</p>`;
+
+  // Reviews (demo)
+  const demoReviews = [
+    { name:"Amaka N.", rating:5, text:"Exactly as pictured, arrived well packaged and the leather smells genuine. Would buy again.", date:"3 weeks ago" },
+    { name:"Ifeanyi K.", rating:5, text:"Feels premium on the wrist. The clasp is solid and the dial catches the light nicely.", date:"1 month ago" },
+    { name:"Sarah M.", rating:4, text:"Great watch overall — sizing runs slightly large so I had a link removed at a local jeweller.", date:"2 months ago" },
+  ];
+  document.getElementById("reviewsList").innerHTML = demoReviews.map(r=>`
+    <div class="review-card">
+      <div class="review-head">
+        <b>${r.name}</b>
+        <span class="review-date">${r.date}</span>
+      </div>
+      <div class="review-stars">${starRow(r.rating)}</div>
+      <p class="review-text" style="margin-top:8px;">${r.text}</p>
+    </div>`).join("");
+
+  // Tabs
+  document.querySelectorAll(".tab-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add("active");
+    });
+  });
+
+  // Quantity
+  let qty = 1;
+  const qtyValue = document.getElementById("qtyValue");
+  document.getElementById("qtyMinus").addEventListener("click", ()=>{ qty=Math.max(1,qty-1); qtyValue.textContent=qty; });
+  document.getElementById("qtyPlus").addEventListener("click", ()=>{ qty=Math.min(10,qty+1); qtyValue.textContent=qty; });
+
+  // Add to cart / buy now
+  function addCurrentToCart(){
+    Cart.add(p.id, qty);
+    showToast(`${p.name} added to cart`);
+  }
+  document.getElementById("addToCartBtn").addEventListener("click", addCurrentToCart);
+  document.getElementById("stickyAddBtn").addEventListener("click", addCurrentToCart);
+  document.getElementById("buyNowBtn").addEventListener("click", ()=>{
+    Cart.add(p.id, qty);
+    window.location.href = "cart.html";
+  });
+
+  // Wishlist
+  const wishBtn = document.getElementById("pdpWishlist");
+  if(Wishlist.has(p.id)) wishBtn.classList.add("active");
+  wishBtn.addEventListener("click", ()=>{
+    const active = Wishlist.toggle(p.id);
+    wishBtn.classList.toggle("active", active);
+    showToast(active ? "Added to wishlist" : "Removed from wishlist");
+  });
+
+  // Related products (same style or gender, excluding current)
+  const related = MODARA_PRODUCTS.filter(x => x.id !== p.id && (x.gender === p.gender || x.style.some(s=>p.style.includes(s)))).slice(0,4);
+  const relatedFinal = related.length ? related : MODARA_PRODUCTS.filter(x=>x.id!==p.id).slice(0,4);
+  renderProductGrid(document.getElementById("relatedGrid"), relatedFinal);
+
+  // Recently viewed
+  const RV_KEY = "modara_recently_viewed";
+  let recent = [];
+  try{ recent = JSON.parse(localStorage.getItem(RV_KEY)) || []; }catch(e){}
+  recent = recent.filter(rid => rid !== p.id);
+  recent.unshift(p.id);
+  recent = recent.slice(0,8);
+  localStorage.setItem(RV_KEY, JSON.stringify(recent));
+  const recentProducts = recent.filter(rid=>rid!==p.id).map(rid=>MODARA_PRODUCTS.find(x=>x.id===rid)).filter(Boolean);
+  if(recentProducts.length){
+    document.getElementById("recentlyViewedSection").style.display = "block";
+    renderProductGrid(document.getElementById("recentGrid"), recentProducts);
+  }
+
+  document.body.classList.add("has-sticky-atc");
+})();
+</script>
+</body>
+</html>
