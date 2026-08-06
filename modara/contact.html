@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact MODARA</title>
+<meta name="description" content="Get in touch with the MODARA team — questions about orders, products, or partnerships.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .contact-layout{ display:grid; gap:40px; grid-template-columns:1fr; padding:20px 0 80px; }
+  @media (min-width:900px){ .contact-layout{ grid-template-columns:1fr 1.2fr; } }
+  .contact-info-item{ display:flex; gap:14px; padding:18px 0; border-bottom:1px solid var(--line); }
+  .contact-info-item svg{ width:20px;height:20px; color:var(--gold-deep); flex-shrink:0; margin-top:2px;}
+  .contact-info-item b{ display:block; font-size:14px; margin-bottom:3px; }
+  .contact-info-item span{ font-size:13.5px; color:var(--ink-70); }
+  .form-field{ margin-bottom:18px; }
+  .form-field label{ display:block; font-size:12.5px; font-weight:600; margin-bottom:8px; }
+  .form-field input, .form-field textarea, .form-field select{
+    width:100%; border:1px solid var(--ink-12); border-radius:2px; padding:13px 14px; font-size:14px; font-family:inherit;
+  }
+  .form-field textarea{ resize:vertical; min-height:120px; }
+  .form-field input:focus, .form-field textarea:focus, .form-field select:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+  .form-row{ display:grid; gap:16px; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="nav-logo">MOD<span>A</span>RA</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="shop.html#collections">Collections</a>
+      <a href="about.html">About</a><a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <a href="account.html" class="icon-btn" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span class="cart-count" data-cart-count>0</span></a>
+      <button class="icon-btn menu-btn" data-drawer-open aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-overlay"></div>
+<aside class="drawer">
+  <div class="drawer-head"><span class="nav-logo">MOD<span>A</span>RA</span><button class="icon-btn" data-drawer-close aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+  <div class="drawer-body">
+    <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="shop.html#collections">Collections</a>
+    <a href="about.html">About</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a><a href="cart.html">Cart</a>
+  </div>
+</aside>
+
+<div class="wrap">
+  <div class="crumb" style="padding-top:20px;">
+    <a href="index.html">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 6l6 6-6 6"/></svg><span>Contact</span>
+  </div>
+  <h1 style="margin-top:18px;font-size:clamp(26px,4vw,36px);">Get in Touch</h1>
+  <p class="muted" style="margin-top:8px;max-width:56ch;">Questions about an order, a product, or a partnership? Our team responds within one business day.</p>
+
+  <div class="contact-layout">
+    <div>
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
+        <div><b>Email</b><span>support@modara.ng</span></div>
+      </div>
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h4l2 5-2.5 1.5a12 12 0 006 6L15 14l5 2v4a2 2 0 01-2 2A16 16 0 014 6a2 2 0 012-2z"/></svg>
+        <div><b>Phone / WhatsApp</b><span>+234 800 000 0000</span></div>
+      </div>
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <div><b>Studio</b><span>Onitsha, Anambra, Nigeria — ships nationwide</span></div>
+      </div>
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div><b>Hours</b><span>Mon – Sat, 9am – 6pm WAT</span></div>
+      </div>
+    </div>
+
+    <form id="contactForm">
+      <div class="form-row">
+        <div class="form-field"><label for="cName">Full Name</label><input id="cName" type="text" required placeholder="Your name"></div>
+        <div class="form-field"><label for="cEmail">Email</label><input id="cEmail" type="email" required placeholder="you@example.com"></div>
+      </div>
+      <div class="form-field">
+        <label for="cTopic">Topic</label>
+        <select id="cTopic">
+          <option>Order Support</option>
+          <option>Product Question</option>
+          <option>Returns &amp; Warranty</option>
+          <option>Partnership / Wholesale</option>
+          <option>Something Else</option>
+        </select>
+      </div>
+      <div class="form-field"><label for="cMsg">Message</label><textarea id="cMsg" required placeholder="How can we help?"></textarea></div>
+      <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand"><span class="nav-logo">MOD<span>A</span>RA</span><p>Africa's most trusted destination for premium, curated watches.</p></div>
+    <div class="footer-col"><b>Shop</b><ul><li><a href="shop.html?gender=men">Men</a></li><li><a href="shop.html?gender=women">Women</a></li></ul></div>
+    <div class="footer-col"><b>Support</b><ul><li><a href="returns.html">Returns &amp; Warranty</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><b>Company</b><ul><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>
+  </div>
+  <div class="wrap footer-bottom"><span>© 2026 MODARA. All rights reserved.</span></div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  showToast("Message sent — we'll reply within 1 business day");
+  this.reset();
+});
+</script>
+</body>
+</html>
