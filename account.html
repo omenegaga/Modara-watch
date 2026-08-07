@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account | MODARA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .auth-wrap{ max-width:400px; margin:0 auto; padding:64px 0 100px; }
+  .auth-tabs{ display:flex; border:1px solid var(--ink-12); border-radius:100px; padding:4px; margin-bottom:32px; }
+  .auth-tab{ flex:1; text-align:center; padding:10px; border-radius:100px; font-size:13px; font-weight:600; background:none; border:none; }
+  .auth-tab.active{ background:var(--ink); color:var(--paper); }
+  .form-field{ margin-bottom:16px; }
+  .form-field label{ display:block; font-size:12.5px; font-weight:600; margin-bottom:8px; }
+  .form-field input{ width:100%; border:1px solid var(--ink-12); border-radius:2px; padding:13px 14px; font-size:14px; }
+  .auth-panel{ display:none; }
+  .auth-panel.active{ display:block; }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="nav-logo">MOD<span>A</span>RA</a>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+    <div class="nav-actions"><a href="cart.html" class="icon-btn" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span class="cart-count" data-cart-count>0</span></a></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="auth-wrap">
+    <div class="center" style="margin-bottom:28px;">
+      <h1 style="font-size:24px;">Welcome to MODARA</h1>
+      <p class="muted" style="margin-top:8px;font-size:13.5px;">Sign in to track orders, save favorites, and check out faster.</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-auth-tab="signin">Sign In</button>
+      <button class="auth-tab" data-auth-tab="register">Register</button>
+    </div>
+    <div class="auth-panel active" data-auth-panel="signin">
+      <div class="form-field"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+      <div class="form-field"><label>Password</label><input type="password" placeholder="••••••••"></div>
+      <button class="btn btn-primary btn-block" id="signinBtn">Sign In</button>
+    </div>
+    <div class="auth-panel" data-auth-panel="register">
+      <div class="form-field"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+      <div class="form-field"><label>Password</label><input type="password" placeholder="Create a password"></div>
+      <button class="btn btn-primary btn-block" id="registerBtn">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="wrap footer-bottom" style="border-top:none;"><span>© 2026 MODARA. All rights reserved.</span></div></footer>
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.querySelectorAll("[data-auth-tab]").forEach(tab=>{
+  tab.addEventListener("click", ()=>{
+    document.querySelectorAll("[data-auth-tab]").forEach(t=>t.classList.remove("active"));
+    document.querySelectorAll("[data-auth-panel]").forEach(p=>p.classList.remove("active"));
+    tab.classList.add("active");
+    document.querySelector(`[data-auth-panel="${tab.dataset.authTab}"]`).classList.add("active");
+  });
+});
+document.getElementById("signinBtn").addEventListener("click", ()=> showToast("Account sign-in connects here"));
+document.getElementById("registerBtn").addEventListener("click", ()=> showToast("Account creation connects here"));
+</script>
+</body>
+</html>
